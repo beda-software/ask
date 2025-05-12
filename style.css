@@ -1,16 +1,168 @@
 .stApp {
-    /* background-color: red !important; */
+    background: #fff;
 }
 
-/* .stChatInput {
+.stMainBlockContainer {
+    padding: 24px 60px 60px;
+    max-width: 888px;
+}
+
+.app-logo {
+    display: block;
+    position: fixed;
+    top: 68px;
+    left: 60px;
+    z-index: 10;
+}
+
+.stAppToolbar {
+    top: 68px;
+    right: 60px;
+}
+
+.stAppHeader {
+    background: none;
+}
+
+.stBottom > div {
+    background: none;
+}
+
+.stDecoration {
+    display: none;
+}
+
+.stChatInput {
     border-radius: 100px;
 }
 
-.stChatInput div[data-baseweb="textarea"] {
+.stChatInput > div {
     border-radius: 100px;
+    background-color: #F5F5F5;
     border: 1px solid #D9D9D9;
 }
 
+.stChatInput div[data-baseweb="textarea"] {
+    background: none;
+}
+
+.stMainBlockContainer > .stVerticalBlockBorderWrapper > .stVerticalBlock > .stElementContainer:first-child {
+    display: none;
+}
+
 .stChatInput div[data-baseweb="base-input"] {
+    background: none;
+}
+
+.stChatInput button svg {
+    fill: #BFBFBF;
+}
+
+.stChatInput textarea::placeholder {
+    color: #BFBFBF;
+}
+
+.stBottom > div > div {
+    padding: 24px 60px 60px;
+    max-width: 888px;
+}
+
+.stVerticalBlock {
+    gap: 16px;
+}
+
+.stHeading h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 64px;
+    padding: 0;
+}
+
+.stHeading h3 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 30px;
+    padding: 0;
+    margin-bottom: 32px;
+}
+
+.stChatMessage > div:first-child {
+    display: none;
+}
+
+.stChatMessage:nth-child(odd) {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 0;
+    background: none;
+}
+
+.stChatMessage:nth-child(odd) > div:nth-child(2) {
+    border-radius: 20px;
+    padding: 8px 16px;
     background-color: #F5F5F5;
-} */
+    flex-grow: 0;
+    margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .stApp {
+        background: radial-gradient(57.33% 50% at 50% 50%, #324055 0.96%, #1E2939 100%);
+    }
+
+    .stChatInput > div {
+        background-color: #343F50;
+        border: 1px solid #5B5E62;
+    }
+
+    .stChatMessage:nth-child(odd) > div:nth-child(2) {
+        background-color: #343F50;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .stMainBlockContainer {
+        padding-top: 100px;
+        max-width: none;
+    }
+
+    .stBottom > div > div {
+        max-width: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .stBottom > div > div {
+        padding: 8px 24px 24px;
+    }
+
+    .stMainBlockContainer {
+        padding: 42px 24px 24px;
+    }
+
+    .app-logo {
+        top: 27px;
+        left: 24px;
+    }
+
+    .stAppToolbar {
+        top: 27px;
+        right: 24px;
+    }
+
+    .app-logo img {
+        width: 80px;
+        height: 26px;
+    }
+
+    .stHeading h1 {
+        font-size: 22px;
+        line-height: 34px;
+    }
+    
+    .stHeading h3 {
+        font-size: 16px;
+        line-height: 20px;
+    }
+}

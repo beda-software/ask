@@ -267,11 +267,15 @@ def load_chat_screen(assistant_id, assistant_title):
     else:
         uploaded_file = None
 
+    st.html(
+        "<a href='https://beda.software/' class='app-logo' target='_blank'><img src='https://static.tildacdn.one/tild6237-3937-4734-a662-613734393138/beda-logo-for-use.svg' /></a>"
+    )
     st.title(assistant_title if assistant_title else "")
     st.subheader("Need help? Ask me anything!", divider=False)
     user_msg = st.chat_input(
-        "Message", on_submit=disable_form, disabled=st.session_state.in_progress, accept_file=True
+        "Message", on_submit=disable_form, disabled=st.session_state.in_progress
     )
+
     if user_msg:
         render_chat()
         with st.chat_message("user"):
