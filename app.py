@@ -2,6 +2,7 @@ import os
 import base64
 import re
 import json
+import logging
 
 import streamlit as st
 import openai
@@ -182,21 +183,21 @@ def create_file_link(file_name, file_id):
 def format_annotation(text):
     citations = []
     text_value = text.value
-    for index, annotation in enumerate(text.annotations):
-        text_value = text_value.replace(annotation.text, f" [{index}]")
+    # for index, annotation in enumerate(text.annotations):
+    #     text_value = text_value.replace(annotation.text, f" [{index}]")
 
-        if file_citation := getattr(annotation, "file_citation", None):
-            cited_file = client.files.retrieve(file_citation.file_id)
-            citations.append(
-                f"[{index}] {file_citation.quote} from {cited_file.filename}"
-            )
-        elif file_path := getattr(annotation, "file_path", None):
-            link_tag = create_file_link(
-                annotation.text.split("/")[-1],
-                file_path.file_id,
-            )
-            text_value = re.sub(r"\[(.*?)\]\s*\(\s*(.*?)\s*\)", link_tag, text_value)
-    text_value += "\n\n" + "\n".join(citations)
+    #     if file_citation := getattr(annotation, "file_citation", None):
+    #         cited_file = client.files.retrieve(file_citation.file_id)
+    #         citations.append(
+    #             f"[{index}] {file_citation.quote} from {cited_file.filename}"
+    #         )
+    #     elif file_path := getattr(annotation, "file_path", None):
+    #         link_tag = create_file_link(
+    #             annotation.text.split("/")[-1],
+    #             file_path.file_id,
+    #         )
+    #         text_value = re.sub(r"\[(.*?)\]\s*\(\s*(.*?)\s*\)", link_tag, text_value)
+    # text_value += "\n\n" + "\n".join(citations)
     return text_value
 
 
