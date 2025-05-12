@@ -268,8 +268,9 @@ def load_chat_screen(assistant_id, assistant_title):
         uploaded_file = None
 
     st.title(assistant_title if assistant_title else "")
+    st.subheader("Need help? Ask me anything!", divider=False)
     user_msg = st.chat_input(
-        "Message", on_submit=disable_form, disabled=st.session_state.in_progress
+        "Message", on_submit=disable_form, disabled=st.session_state.in_progress, accept_file=True
     )
     if user_msg:
         render_chat()
@@ -287,12 +288,22 @@ def load_chat_screen(assistant_id, assistant_title):
 
     render_chat()
 
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 def main():
     # Check if multi-agent settings are defined
     multi_agents = os.environ.get("OPENAI_ASSISTANTS", None)
     single_agent_id = os.environ.get("ASSISTANT_ID", None)
     single_agent_title = os.environ.get("ASSISTANT_TITLE", "Assistants API UI")
+
+    st.set_page_config(
+        page_title="Beda EMR knowledge base",
+        page_icon="favicon.ico",
+    )
+
+    local_css("style.css")
 
     if (
         authentication_required
@@ -325,7 +336,6 @@ def main():
         load_chat_screen(single_agent_id, single_agent_title)
     else:
         st.error("No assistant configurations defined in environment variables.")
-
 
 if __name__ == "__main__":
     main()
